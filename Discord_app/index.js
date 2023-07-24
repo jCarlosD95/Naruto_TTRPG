@@ -1,3 +1,5 @@
+const {token} = require('./config.js');
+console.log(token);
 const Discord = require('discord.js');
 
 const prefix = '!';
@@ -21,4 +23,4 @@ client.on("ready", () => {
     console.log("Bot is online!")
 })
 
-client.login("MTEzMjQyOTgzMzU4Mjk0NDMzNw.GIQU-8.8c-dGRo9uUP7SwoCvHrM8HSfRpQ-h01B9YSgnQ")
+client.login(token)
