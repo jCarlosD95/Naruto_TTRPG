@@ -6,7 +6,6 @@
   "version": "1.0.0",
   "description": "a discord app tracking characters' movement",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "test"
   },
