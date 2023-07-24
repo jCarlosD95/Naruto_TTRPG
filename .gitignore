@@ -1,0 +1,6 @@
+#Ignore the test file
+Discord_app/test.js
+
+
+#ignore temporary files
+*~
