@@ -1,5 +1,4 @@
 const {token} = require('./config.js');
-console.log(token);
 const Discord = require('discord.js');
 
 const prefix = '!';
