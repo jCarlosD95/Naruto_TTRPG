@@ -1,6 +1,7 @@
-const {token} = require('../config.js')
+//const {token} = require('../config.js')
 const Discord = require('discord.js');
 const { Partials } = require('discord.js');
+require('dotenv').config();
 
 
 const prefix = '!';
@@ -37,4 +38,4 @@ client.on('messageCreate', async message =>{
     }
 })
 
-client.login(token)
+client.login(process.env.token)

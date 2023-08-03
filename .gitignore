@@ -1,6 +1,8 @@
 #Ignore the test file
 Discord_app/config.js
 
+#Ignore .env
+Discord_app/.env
 
 #ignore temporary files
 *~
