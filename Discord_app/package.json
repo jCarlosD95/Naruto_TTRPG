@@ -1,11 +1,13 @@
 {
   "dependencies": {
-    "discord.js": "^14.11.0"
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.3.1",
+    "mongoose": "^7.4.1"
   },
   "name": "discord_app",
   "version": "1.0.0",
   "description": "a discord app tracking characters' movement",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "test"
   },
