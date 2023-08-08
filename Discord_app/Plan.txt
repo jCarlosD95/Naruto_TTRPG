@@ -1,0 +1,3 @@
+The Index, on a message, calls a message parser.
+The parser calls a function depending on the message.
+The function executes
