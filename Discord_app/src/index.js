@@ -54,7 +54,7 @@ client.on("ready", () => {
     console.log("Bot is online!")
 
     //Connect to Mongo DB and keep the connection open continuously
-    mongoose.connect(process.env.dbToken)
+    //mongoose.connect(process.env.dbToken)
 });
 
 
@@ -85,6 +85,11 @@ client.on(Events.InteractionCreate, async interaction => {
 
 //Responds"You are DMing me now!" if user DMs the bot.
 client.on('messageCreate', async message =>{
+    
+    //Don't execute if the bot is the sender.
+    if(message.author.id === client.user.id) 
+        return;
+
     if (message.channel.isDMBased()) {
         message.author.send("You are DMing me now!");
         await parse(message);
