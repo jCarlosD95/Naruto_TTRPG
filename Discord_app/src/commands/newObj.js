@@ -4,31 +4,28 @@ const objSchema = require("../schema/schema.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("new-object")
-    .setDescription("Creates a new hidden object")
+    .setDescription("Creates a new hidden ninja or item")
     //Add option where user fills in object name
     .addStringOption((option) =>
       option
         .setName("object-name")
-        .setDescription("The name of the player or item")
+        .setDescription("The name of the ninja or item")
         .setRequired(true)
     )
     //Add option where user fills in object location
     .addStringOption((option) =>
       option
         .setName("object-location")
-        .setDescription("The location of the player or item")
+        .setDescription("The location of the ninja or item")
         .setRequired(true)
     ),
   async execute(interaction) {
-    //getting the object names and locations from command input
+    //getting the object name and location from command input
     const objectName = interaction.options.getString("object-name");
     const objectLoc = interaction.options.getString("object-location");
 
-    //tests to see if things work the way I think they do.
-    //await interaction.reply({ content: objectName, ephemeral: true });
-
-    //look for the object in the DB. if it's there already, notify user.
-    //Else, create it and notify user
+    //look for the object in the DB. if it's not there already, create it and notify user.
+    //Else, notify user
 
     let test = await objSchema.findOne({owner: interaction.user.id, objName: objectName});
 

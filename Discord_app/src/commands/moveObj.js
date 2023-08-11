@@ -4,19 +4,19 @@ const objSchema = require("../schema/schema.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("move-object")
-    .setDescription("Changes a hidden object's location")
+    .setDescription("Changes a hidden ninja or item's location")
     //Add option where user fills in object name
     .addStringOption((option) =>
       option
         .setName("object-name")
-        .setDescription("The name of the player or item")
+        .setDescription("The name of the ninja or item")
         .setRequired(true)
     )
     //Add option where user fills in object location
     .addStringOption((option) =>
       option
         .setName("object-location")
-        .setDescription("The location of the player or item")
+        .setDescription("The location of the ninja or item")
         .setRequired(true)
     ),
   async execute(interaction) {
