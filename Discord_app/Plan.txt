@@ -1,3 +1,23 @@
 The Index, on a message, calls a message parser.
 The parser calls a function depending on the message.
-The function executes
+The function executes.
+
+
+"Hey! I have a question about implementing certain features!
+
+I'm making a bot that keeps track of secret information for each player in a board game. Each user must be able to send commands to the bot SECRETLY. No user should be able to see what any other user types to the bot. The way I see it, there are two ways I can implement the commands through which users can interact with the bot:
+
+1) Users DM the bot their commands
+	Advantage: 
+		Users don't have to stay in a server with the bot.
+		I don't have to set up a server and create private channels for each person who uses the bot.
+	
+2) Users submit slash commands on a channel that only they can access.
+	I've already set up the framework for my bot to handle slash commands
+	It's an officially supported way to interact with the bot.
+	Each command will have a little description that pops up as you type it
+
+Which way should I choose to implement commands in my bot, and why?
+
+
+NEW PLAN: JUST USE EPHEMERALS!!!!

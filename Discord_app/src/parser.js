@@ -11,7 +11,7 @@ async function parse(message) {
 
   let cmd = message.content.split(" ");
   if (cmd[0] === "get")
-    message.author.send("bing bong, bitch!").catch((error) => {console.log("Whoopsie!");});
+    message.author.send("Get what, now?").catch((error) => {console.log("Whoopsie!");});
 }
 
 module.exports.parse = parse;
