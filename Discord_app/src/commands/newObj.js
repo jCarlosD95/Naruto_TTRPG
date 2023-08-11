@@ -48,32 +48,5 @@ module.exports = {
             ephemeral: true
         })
     }
-        
-
-
-    /*
-    objSchema.findOne(
-      { owner: interaction.user.id, objName: objectName },
-      async (err, data) => {
-        if (err) throw err;
-
-        if (!data) {
-          objSchema.create({
-            owner: interaction.user.id,
-            objName: objectName,
-            objLocation: objectLoc,
-          });
-          await interaction.reply({
-            content: `${objectName} created!`,
-            ephemeral: true,
-          });
-        } else {
-          await interaction.reply({
-            content: `You already have an object called ${data.objName} at ${data.objLocation}!`,
-            ephemeral: true,
-          });
-        }
-      }
-    );*/
   },
 };
