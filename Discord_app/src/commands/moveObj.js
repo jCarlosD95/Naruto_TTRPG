@@ -24,8 +24,8 @@ module.exports = {
     const objectName = interaction.options.getString("object-name");
     const objectLoc = interaction.options.getString("object-location");
 
-    const filter = { objName: objectName }; //object name = "Charlie"
-    const update = { objLocation: objectLoc }; //objectLocation = "Canada"
+    const filter = { objName: objectName }; //The filter to find the ninja/item
+    const update = { objLocation: objectLoc }; //the object to update the ninja/item
 
     //Find an object based on name and update it.
     let test = await objSchema.findOneAndUpdate(filter,update, {new: true});
