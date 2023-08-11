@@ -24,30 +24,20 @@ module.exports = {
     const objectName = interaction.options.getString("object-name");
     const objectLoc = interaction.options.getString("object-location");
 
-    const filter = { objName: objectName };     //object name = "Charlie"
-    const update = { objLocation: objectLoc };  //objectLocation = "Canada"
+    const filter = { objName: objectName }; //object name = "Charlie"
+    const update = { objLocation: objectLoc }; //objectLocation = "Canada"
 
-    /*original object: 
-    {
-        objName:     "Charlie"
-        objLocation: "USA"
-    }
-    */
-    let test = await objSchema.findOneAndUpdate(filter, update, {new: true});
-     /*intended result: 
-    {
-        objName:     "Charlie"
-        objLocation: "Canada"
-    }
-    */
+    //Find an object based on name and update it.
+    let test = await objSchema.findOneAndUpdate(filter,update, {new: true});
 
+    //if the object isn't found, let user know
     if (test === null) {
       await interaction.reply({
-        content: `${test["objName"]} doesn't seem to exist!`,
+        content: `${objectName} doesn't seem to exist! Did you spell it right?`,
         ephemeral: true,
       });
     } else {
-      test = await objSchema.findOne(filter);
+      //If object is found and updated, then tell user.
       await interaction.reply({
         content: `${test["objName"]} has been moved to ${test["objLocation"]}!`,
         ephemeral: true,
