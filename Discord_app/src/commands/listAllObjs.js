@@ -14,7 +14,7 @@ module.exports = {
     //if no objects are found, let user know
     if (hiddenObjects.length) {
       //If object(s) is found, print the list of them for the user.
-      let replyString = "You have the following hidden items:\n\n";
+      let replyString = "You have the following hidden ninjas and items:\n\n";
       for (obj in hiddenObjects) {
         replyString += `${hiddenObjects[obj]["objName"]} is hidden at ${hiddenObjects[obj]["objLocation"]}.\n`;
       }
