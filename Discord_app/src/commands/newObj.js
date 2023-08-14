@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
 const objSchema = require("../schema/schema.js");
-const { check } = require("../functions/checkInteractions.js")
+const { check } = require("../functions/checkIntersections.js")
 
 module.exports = {
   data: new SlashCommandBuilder()
