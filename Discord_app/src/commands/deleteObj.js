@@ -13,6 +13,9 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    //Defer reply to give bot time to perform query
+    await interaction.deferReply({ephemeral: true});
+    
     //getting the object name from command input
     const objectName = interaction.options.getString("object-name");
     const filter = { objName: objectName }; //The filter to find the ninja/item
@@ -22,16 +25,10 @@ module.exports = {
 
     //if the object isn't found, let user know
     if (test === null) {
-      await interaction.reply({
-        content: `${objectName} doesn't seem to exist! Did you spell it right?`,
-        ephemeral: true,
-      });
+      await interaction.editReply(`${objectName} doesn't seem to exist! Did you spell it right?`);
     } else {
       //If object is found and updated, then tell user.
-      await interaction.reply({
-        content: `${test["objName"]} has been deleted!`,
-        ephemeral: true,
-      });
+      await interaction.editReply(`${test["objName"]} has been deleted!`);
     }
   },
 };

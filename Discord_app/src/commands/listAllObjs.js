@@ -8,6 +8,9 @@ module.exports = {
       "Reads you the location all of your hidden ninjas and items"
     ),
   async execute(interaction) {
+    //Need to defer the reply so that the application has more time to think.
+    await interaction.deferReply({ ephemeral: true });
+
     //Find all of the objects a user has and store in hiddenObjects.
     let hiddenObjects = await objSchema.find({ owner: interaction.user.id });
 
@@ -18,15 +21,11 @@ module.exports = {
       for (obj in hiddenObjects) {
         replyString += `${hiddenObjects[obj]["objName"]} is hidden at ${hiddenObjects[obj]["objLocation"]}.\n`;
       }
-      await interaction.reply({
-        content: replyString,
-        ephemeral: true,
-      });
+      await interaction.editReply(replyString);
     } else {
-      await interaction.reply({
-        content: `You don't have a hidden ninja or items on the battlefield yet!`,
-        ephemeral: true,
-      });
+      await interaction.editReply(
+        `You don't have a hidden ninja or items on the battlefield yet!`
+      );
     }
   },
 };

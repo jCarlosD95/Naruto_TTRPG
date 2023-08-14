@@ -16,6 +16,11 @@ const objSchema = new Schema({
     objLocation: {
         type: String,
         required: true
+    },
+    //webhook url of the interaction that spawned this object
+    whurl: {
+        type: String,
+        required: true,
     }
 
 });

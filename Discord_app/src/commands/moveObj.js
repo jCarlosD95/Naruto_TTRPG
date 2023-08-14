@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
 const objSchema = require("../schema/schema.js");
+const { check } = require("../functions/checkInteractions.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -20,6 +21,9 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    //Need to defer the reply so that the application has more time to think.
+    await interaction.deferReply({ ephemeral: true });
+
     //getting the object names and locations from command input
     const objectName = interaction.options.getString("object-name");
     const objectLoc = interaction.options.getString("object-location");
@@ -28,20 +32,19 @@ module.exports = {
     const update = { objLocation: objectLoc }; //the object to update the ninja/item
 
     //Find an object based on name and update it.
-    let test = await objSchema.findOneAndUpdate(filter,update, {new: true});
+    let test = await objSchema.findOneAndUpdate(filter, update, { new: true });
 
     //if the object isn't found, let user know
     if (test === null) {
-      await interaction.reply({
-        content: `${objectName} doesn't seem to exist! Did you spell it right?`,
-        ephemeral: true,
-      });
+      await interaction.editReply(
+        `${objectName} doesn't seem to exist! Did you spell it right?`
+      );
     } else {
       //If object is found and updated, then tell user.
-      await interaction.reply({
-        content: `${test["objName"]} has been moved to ${test["objLocation"]}!`,
-        ephemeral: true,
-      });
+      await interaction.editReply(
+        `${test["objName"]} has been moved to ${test["objLocation"]}!`
+      );
+      check(test, objectLoc, interaction);
     }
   },
 };

@@ -85,8 +85,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         content: "There was an error while executing this command",
         ephemeral: true,
       });
-    } else {
-       /////CHANGE THIS 
+    } else { 
       await interaction.reply({
         content: "There was an error while executing this command",
         ephemeral: true,
