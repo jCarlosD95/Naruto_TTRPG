@@ -21,3 +21,14 @@ Which way should I choose to implement commands in my bot, and why?
 
 
 NEW PLAN: JUST USE EPHEMERALS!!!!
+
+
+How will the app track rounds?
+Automatically. Every time all players have submitted their moves, the round advances.
+
+Where is the round stored?
+Option 1: In the database
+	Allows rounds to stay synced with game progress if bot disconnects
+Option 2: locally, as an attribute of some object I create to track rounds.
+	Don't have to worry about making a new table that only stores one variable.
+

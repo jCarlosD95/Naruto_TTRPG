@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
-const objSchema = require("../schema/schema.js");
+const objSchema = require("../schema/objSchema.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,7 +15,7 @@ module.exports = {
   async execute(interaction) {
     //Defer reply to give bot time to perform query
     await interaction.deferReply({ephemeral: true});
-    
+
     //getting the object name from command input
     const objectName = interaction.options.getString("object-name");
     const filter = { objName: objectName }; //The filter to find the ninja/item

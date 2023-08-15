@@ -17,11 +17,13 @@ const objSchema = new Schema({
         type: String,
         required: true
     },
-    //webhook url of the interaction that spawned this object
-    whurl: {
-        type: String,
-        required: true,
-    }
+
+    //an array of objects saying when the object was at each location:
+    locPerRound: [{
+        round: Number,
+        location: String
+    }]
+
 
 });
 

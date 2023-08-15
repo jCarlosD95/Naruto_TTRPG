@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("discord.js");
-const objSchema = require("../schema/schema.js");
-const { check } = require("../functions/checkIntersections.js")
+const objSchema = require("../schema/objSchema.js");
+const roundSchema = require("../schema/roundSchema.js");
+const { check } = require("../functions/checkIntersections.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -22,7 +23,7 @@ module.exports = {
     ),
   async execute(interaction) {
     //defer reply to give bot time to think
-    await interaction.deferReply({ephemeral: true});
+    await interaction.deferReply({ ephemeral: true });
 
     //getting the object name and location from command input
     const objectName = interaction.options.getString("object-name");
@@ -31,19 +32,34 @@ module.exports = {
     //look for the object in the DB. if it's not there already, create it and notify user.
     //Else, notify user
 
-    let test = await objSchema.findOne({owner: interaction.user.id, objName: objectName});
+    let test = await objSchema.findOne({
+      owner: interaction.user.id,
+      objName: objectName,
+    });
 
-    if (test === null){
-        test = await objSchema.create({
-            owner: interaction.user.id,
-            objName: objectName,
-            objLocation: objectLoc,
-            whurl: interaction.webhook.url
-        });
-        await check(test, objectLoc, interaction)
-        await interaction.editReply(`Created ${test["objName"]}!`);
-    }else {
-        await interaction.editReply(`${test["objName"]} already exists!`);
+    if (test === null) {
+      //Create round if it doesn't exist.
+      isRound = await roundSchema.find();
+      if (!isRound.length)
+        await roundSchema.create({ round: 0 });
+
+      //store the round in storeROund, then put it in locPerRound
+      let storeRound = await roundSchema.findOne();
+      test = await objSchema.create({
+        owner: interaction.user.id,
+        objName: objectName,
+        objLocation: objectLoc,
+        locPerRound: [
+          {
+            round: await storeRound["round"],
+            location: objectLoc,
+          },
+        ],
+      });
+      await check(test, objectLoc, interaction);
+      await interaction.editReply(`Created ${test["objName"]}!`);
+    } else {
+      await interaction.editReply(`${test["objName"]} already exists!`);
     }
-  },
+  }
 };

@@ -8,7 +8,7 @@ const {
 } = require("discord.js");
 require("dotenv").config();
 const mongoose = require("mongoose");
-const objSchema = require("./schema/schema");
+const objSchema = require("./schema/objSchema");
 const fs = require("node:fs");
 const path = require("node:path");
 const { parse } = require("./parser.js");

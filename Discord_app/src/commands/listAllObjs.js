@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
-const objSchema = require("../schema/schema.js");
+const objSchema = require("../schema/objSchema.js");
 
 module.exports = {
   data: new SlashCommandBuilder()

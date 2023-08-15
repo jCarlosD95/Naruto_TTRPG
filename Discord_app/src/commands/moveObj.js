@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
-const objSchema = require("../schema/schema.js");
+const objSchema = require("../schema/objSchema.js");
+const roundSchema = require("../schema/roundSchema.js");
 const { check } = require("../functions/checkIntersections.js");
 
 module.exports = {
@@ -27,12 +28,29 @@ module.exports = {
     //getting the object names and locations from command input
     const objectName = interaction.options.getString("object-name");
     const objectLoc = interaction.options.getString("object-location");
+    //getting round from database.
+    const storeRound = await roundSchema.findOne();
 
     const filter = { objName: objectName }; //The filter to find the ninja/item
-    const update = { objLocation: objectLoc }; //the object to update the ninja/item
+
+    //the object to update the ninja/item
 
     //Find an object based on name and update it.
-    let test = await objSchema.findOneAndUpdate(filter, update, { new: true });
+    let test = await objSchema.findOneAndUpdate(
+      filter,
+      {
+        objLocation: objectLoc,
+
+        $push: {
+          locPerRound: {
+            round: storeRound["round"],
+            location: objectLoc,
+          },
+        },
+      },
+      { new: true }
+    );
+    //await objSchema.findOneAndUpdate(filter, update);
 
     //if the object isn't found, let user know
     if (test === null) {
