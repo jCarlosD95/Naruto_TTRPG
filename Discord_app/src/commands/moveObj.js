@@ -33,8 +33,6 @@ module.exports = {
 
     const filter = { objName: objectName }; //The filter to find the ninja/item
 
-    //the object to update the ninja/item
-
     //Find an object based on name and update it.
     let test = await objSchema.findOneAndUpdate(
       filter,
